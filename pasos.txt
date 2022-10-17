@@ -1,0 +1,40 @@
+
+Vamos a crear una aplicacion DASH que se conecte a la API de BME
+
+Paso 0
+Creamos el repositorio en GITHUB para luego poder desplegarlo
+Una vez tenemos el repositorio lo clonamos 
+Creamos el archivo de python "app.py" y podemos ya trabajar sobre esto
+
+Paso 1
+Creamos una carpeta "src" en la que metemos los ficheros con codigo
+Creamos un fichero "utils.py" para meter en el las funciones de comunicacion con el API de BME
+
+
+Paso 1
+Mostramos los datos de cierre en una gráfica de línea del Santander.
+Cogemos el codigo que conectaba a la API de BME y traia los datos. 
+Y hacemos una grafica con los datos de cierre del santander. 
+
+
+Paso 2
+Añadimos títulos y Subtítulos.
+
+
+Paso 3
+Generamos dos dropdown menús para el índice y para los tickers.Al cambiar el índice se tiene tiene que actualizar el gráfico. 
+
+
+Paso 4
+Cambiamos el gráfico de linea por un gráfico de velas. 
+
+
+Paso 5 (opcional)
+Mejora el aspecto usando un fichero css a tu gusto.Por ejemplo: 
+
+
+
+
+
+
+
