@@ -8,7 +8,8 @@ Creamos el archivo de python "app.py" y podemos ya trabajar sobre esto
 
 Paso 1
 Creamos una carpeta "src" en la que metemos los ficheros con codigo
-Creamos un fichero "utils.py" para meter en el las funciones de comunicacion con el API de BME
+Creamos un fichero "utils.py" para meter en él las funciones de comunicacion con el API de BME
+Creamos tambien el fichero "test_utils.py" para testear esas funciones en un fichero independiente
 
 
 Paso 1
