@@ -23,7 +23,7 @@ app.layout = html.Div( # el tag Div aplica a todo el bloque que tiene debajo. Ca
                 {'label': 'DAX', 'value': 'DAX'},
                 {'label': 'EUROSTOXX', 'value': 'EUROSTOXX'},
             ],
-            value='IBEX' # este es el valor predeterminado que vamos a ver al inicio
+            value='IBEX' # este es el valor por defecto que vamos a ver al inicio
         ),
         dcc.Dropdown(
             id='menu-ticker', # de momento lo pongo el ID pero las opciones en si las coge luego
@@ -44,7 +44,7 @@ def change_ticker_menu_options(market): # funcion para sacar los ticker segun el
     master = ah.get_ticker_master(market=market) # usamos la funcion que está en "utils.py"
     ticker_options = [
         {'label': tck, 'value': tck} # convertimos la SERIE en un diccionario. Tanto la CLAVE como el VALOR serán los tickers.
-        for tck in master.ticker # master.ticker es una SERIE con los tickers del mercado
+        for tck in master.ticker # cojo la COLUMNA ticker del DF master
     ]
     return ticker_options # diccionario con los tickers
 
@@ -54,19 +54,19 @@ def change_ticker_menu_options(market): # funcion para sacar los ticker segun el
     Input('menu-ticker', 'options'), # srgundo dropdown
 )
 def select_tck(ticker_options):
-    return ticker_options[0]['value'] # por definición, sacamos el primer TICKER del mercado seleccionado. 
+    return ticker_options[0]['value'] # sacamos el primer TICKER del mercado seleccionado, queremos el "value" de este diccionario
 
 
-@app.callback( # Tercer CallBack. 
+@app.callback( # Tercer CallBack. *** State te permite pasar valor sin ejecutar el CALLBACK *** 
     Output('example-graph', 'figure'), # Nos devuelve el GRAFICO con los datos que le hemos metido
-    State('menu-index', 'value'),
+    State('menu-index', 'value'), # en lugar de ser InPut es State para evitar errores en los callbacks
     Input('menu-ticker', 'value'), # Entra el TICKER que hayamos seleccionado en el segundo dropdown. 
 )
 def change_figure(market, tck): # recibe el mercado y el ticker de los apartados anteriores
-    data = ah.get_close_data_ticker(market=market, ticker=tck)
+    data = ah.get_close_data_ticker(market=market, ticker=tck) # llamamos al get-close-data para coger los datos del TICKER
     fig = px.line(data) # Gráfico de Plotly.Express. Coge los datos que salen de la funcion para hacer un grafico de linea
     return fig
 
 
 if __name__ == "__main__":
-    app.run_server(host="0.0.0.0", debug=False, port=8080)
+    app.run_server(host="0.0.0.0", debug=False, port=8080) # desplegamos la app en este host y este puerto concreto
